@@ -1,0 +1,71 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html"> 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rick's Guitar</title>
+<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+<script type="text/javascript" src="js/bookstrap.js"></script>
+</head>
+<body>
+<div class="container">
+	<div class="row">
+			<h1 class="text-center">Rick's Guitar Shop!</h1>
+		</div>
+	</div>
+	<form class="bs-example bs-example-form" role="form">
+<div class="input-group">
+<span class="input-group-addon" id="type" name="type">type</span>
+<input type="text" class="form-control" placeholder="type">
+</div><br>
+<div class="input-group">
+<span class="input-group-addon" id="builder" name="builder">builder</span>
+<input type="text" class="form-control" placeholder="builder">
+</div>
+<br>
+<div class="input-group">
+<span class="input-group-addon" id="backWood" name="backWood">backWood</span>
+<input type="text" class="form-control" placeholder="backWood">
+</div>
+<br>
+<div class="input-group">
+<span class="input-group-addon" id="topWood" name="topWood">topWood</span>
+<input type="text" class="form-control" placeholder="topWood">
+</div><br>
+<button type="button" class="btn btn-success">search</button>
+</form>
+	
+<script type="text/javascript">
+var type=null;
+var builder=null;
+var topwood=null;
+var backwood=null;
+$("#search").click(function(){
+	alert("213123");	 
+type=$("#type").val();
+builder=$("#builder").val();
+topwood=$("#topwood").val();
+backwood=$("#backwood").val();
+	alert(type);
+	filter();
+});
+function filter() {
+	$.get("SearchGuitar", {type:type,builder:builder,topwood:topwood,backwood:backwood},function(n){
+			var html = "";
+			alert("asdas22");
+			$("#result tr").remove();
+			for (var i=0; i < n.rows.length; i++) {
+			var r = n.rows[i];
+			html+="<tr class=\"info\"><td>"+r.type+"</td><td>"+r.builder+"</td><td>"+r.topwood+"</td><td>"+r.backwood+"</td><tr>";
+		}
+			$("#result").append(html);
+	});
+}
+	
+ 	
+</script>
+
+</body>
+</html>
